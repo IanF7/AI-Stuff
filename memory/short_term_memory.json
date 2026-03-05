@@ -1,17 +1,18 @@
 {
-  "updated_at": "2026-03-04T22:17:34.001567+00:00",
-  "session_summary": "Ian is developing the assistant and is testing its memory. He asked what I recall about the last conversation; I summarized that he tested recall of his first message, replied “Fantastic!”, and I suggested he provide 2–3 details to remember.",
+  "updated_at": "2026-03-05T17:40:48.685641+00:00",
+  "session_summary": "Ian is developing the assistant and testing its short-term memory, including catching typos and recalling details like spelling variations of the assistant’s name.",
   "open_loops": [
-    "Awaiting further instructions from Ian regarding memory testing or other evaluation."
+    "Ian may provide a few details (keyword/preference/date or task) for the assistant to retain during this session for further memory testing."
   ],
   "user_facts": {
     "name": "Ian",
     "role": "Developing the assistant",
     "current_goal": "Testing the assistant's memory capabilities",
-    "spelled_assistant_name_as": "Maiay"
+    "spelled_assistant_name_as": "Maiay",
+    "also_spelled_assistant_name_as": "Maiya"
   },
   "last_turn": {
-    "user": "Hey Maiay, I'm testing your memory again, but what do you recall about our last conversation?",
-    "assistant": "Ian, last time we talked you were testing my memory.\n\n- You asked me to recall the first thing you’d said earlier in the session.\n- I did, and you replied “Fantastic!”, confirming you were satisfied.\n- Then I suggested a next step: that you tell me 2–3 details you want me to remember for the rest of this session (or until you say otherwise), and I’d repeat them back later if you asked.\n\nAlso: you spelled my name “Maiay” this time. I noticed."
+    "user": "Yah, sorry about that little typo, glad you caught it though",
+    "assistant": "No need to apologize. I’ve seen far worse crimes committed against vowels.\n\nIf you want to keep testing memory, give me a couple details you’d like me to hold onto for the rest of this session—something like:\n- a keyword,\n- a preference (coffee/tea, etc.),\n- and a date or small task.\n\nThen you can ask again later and I’ll repeat them back."
   }
 }
