@@ -1,21 +1,9 @@
-{
-  "updated_at": "2026-03-06T20:29:53.475922+00:00",
-  "session_summary": "Ian is developing the assistant and testing memory behavior; he also did some file restructuring and is sanity-checking whether the system still resolves imports/paths/config/assets correctly. Prior note: “Maiay” was a typo; “Maiya” is the correct spelling.",
-  "open_loops": [
-    "Ian may share his stack (Node/Python/etc.) and what restructuring was done to get specific commands/checks.",
-    "Ian may provide an additional anchor detail to retain for continued memory testing."
-  ],
-  "user_facts": {
-    "name": "Ian",
-    "role": "Developing the assistant",
-    "current_goal": "Testing the assistant's memory capabilities",
-    "assistant_name_correct_spelling": "Maiya",
-    "assistant_name_typo_variant": "Maiay",
-    "wants_long_term_memory_behavior": "User says updates were made so assistant can save important things to long-term memory/personality before shutdown.",
-    "recent_activity": "Did file restructuring and is testing whether it worked"
-  },
-  "last_turn": {
-    "user": "Hey there, just testing to see if some file restructuring I did worked",
-    "assistant": "Suggested quick sanity checks: boot/import test for missing modules/paths; ensure config/relative imports/assets resolve; run a small end-to-end workflow touching moved pieces; run build/test suite. Asked for stack and restructuring details for exact commands/failure modes."
-  }
-}
+[
+  {
+        "updated_at": "<ISO-8601 UTC timestamp>",
+        "session_summary": "<1-3 sentences, max 600 chars>",
+        "open_loops": ["<max 5 items>"],
+        "user_facts": { "<key>": "<value>", "...": "..." },
+        "last_turn": { "user": "<max 300 chars>", "assistant": "<max 300 chars>" }
+    }
+]
