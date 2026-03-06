@@ -3,8 +3,8 @@ from datetime import datetime, timezone, timedelta
 from openai import OpenAI
 from pathlib import Path
 
-from STM import load_stm, save_stm, stm_build_instructions, stm_updater_model
-from LTM import ltm_updater_model, save_ltm, load_ltm
+from memory.short_term_memory import load_stm, save_stm, stm_build_instructions, stm_updater_model
+from memory.long_term_memory import ltm_updater_model, save_ltm, load_ltm
 from speech.TTS import speak_text
 
 BASE_DIR = Path(__file__).resolve().parent
