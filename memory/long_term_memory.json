@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "timestamp": "2026-03-06T19:57:29.718936Z",
+    "type": "identity",
+    "summary": "User's name is Ian.",
+    "importance": "medium"
+  },
+  {
+    "timestamp": "2026-03-06T19:57:29.718936Z",
+    "type": "goal",
+    "summary": "Ian is developing the assistant and testing its memory behavior/capabilities.",
+    "importance": "medium"
+  },
+  {
+    "timestamp": "2026-03-06T19:57:29.718936Z",
+    "type": "constraint",
+    "summary": "Assistant name spelling: 'Maiya' is correct; 'Maiay' was a typo variant during testing.",
+    "importance": "low"
+  },
+  {
+    "timestamp": "2026-03-06T20:30:01.130188+00:00",
+    "type": "identity",
+    "summary": "User's name is Ian; he is developing the assistant.",
+    "importance": "medium"
+  },
+  {
+    "timestamp": "2026-03-06T20:30:01.130188+00:00",
+    "type": "goal",
+    "summary": "Ian is testing the assistant's memory behavior/capabilities during development.",
+    "importance": "medium"
+  },
+  {
+    "timestamp": "2026-03-06T20:30:01.130188+00:00",
+    "type": "other",
+    "summary": "Correct spelling is “Maiya” (not “Maiay”).",
+    "importance": "high"
+  }
+]
