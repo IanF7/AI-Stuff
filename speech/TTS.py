@@ -33,9 +33,12 @@ class PiperTTS:
         self.piper_exe = str(piper_exe)
         self.model_path = str(model_path)
         self.enabled = enabled
-        self.queue = queue.Queue()
-        self.thread = threading.Thread(target = self.worker, daemon=True)
-        self.thread.start()
+        self.text_queue = queue.Queue()
+        self.audio_queue = queue.Queue()
+        self.text_thread = threading.Thread(target = self.text_worker, daemon = True)
+        self.audio_thread = threading.Thread(target = self.audio_worker, daemon = True)
+        self.text_thread.start()
+        self.audio_thread.start()
 
     def set_enabled(self, enabled: bool):
         self.enabled = enabled
@@ -46,22 +49,25 @@ class PiperTTS:
         
         cleaned_text = " ".join(text.strip().split())
         if cleaned_text:
-            self.queue.put(cleaned_text)
+            self.text_queue.put(cleaned_text)
 
     def pause(self):
-        self.queue.join()
+        self.text_queue.join()
+        self.audio_queue.join()
 
     def close(self):
         self.pause()
-        self.queue.put(None)
-        self.thread.join()
+        self.text_queue.put(None)
+        self.text_thread.join()
+        self.audio_queue.put(None)
+        self.audio_thread.join()
 
-    def worker(self):
+    def text_worker(self):
         while True:
-            text = self.queue.get()
+            text = self.text_queue.get()
 
             if text is None:
-                self.queue.task_done()
+                self.text_queue.task_done()
                 break
 
             wav_path = None
@@ -75,18 +81,36 @@ class PiperTTS:
                     stdout = subprocess.DEVNULL,
                     stderr = subprocess.DEVNULL
                 )
-                winsound.PlaySound(wav_path, winsound.SND_FILENAME)
-
+                self.audio_queue.put(wav_path)
+                wav_path = None
             except Exception as e:
                 print(f"\n[TTS ERROR] {e}\n")
+                if wav_path and os.path.exists(wav_path):
+                    try:
+                        os.remove(wav_path)
+                    except Exception as e:
+                        pass
+            finally:
+                self.text_queue.task_done()
 
+    def audio_worker(self):
+        while True:
+            wav_path = self.audio_queue.get()
+
+            if wav_path is None:
+                self.audio_queue.task_done()
+                break
+
+            try:
+                winsound.PlaySound(wav_path, winsound.SND_FILENAME)
+            except Exception as e:
+                print(f"\n[TTS PLAYBACK ERROR] {e}\n")
             finally:
                 if wav_path and os.path.exists(wav_path):
                     try:
                         os.remove(wav_path)
                     except Exception as e:
                         pass
-                self.queue.task_done()
-
+                self.audio_queue.task_done()
     
 

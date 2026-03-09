@@ -1,10 +1,13 @@
 {
-  "updated_at": "2026-03-09T21:08:46.937812+00:00",
-  "session_summary": "User is testing adding a voice (TTS) to the assistant and is checking how well it can express emotion via short utterances. Session ended after the user quit.",
-  "open_loops": [],
+  "updated_at": "2026-03-09T21:41:02.285270+00:00",
+  "session_summary": "User is testing TTS voice switching and latency; prior tests worked fine. Assistant asked for exact voice-switch tokens and preferred output format to measure switch latency via alternating A/B lines.",
+  "open_loops": [
+    "User may provide the exact phrases/selectors their system listens for (trigger phrase/voice selection) so the assistant can mirror them.",
+    "User may specify what output format they want for the latency test (single word, short sentence, alternating lines)."
+  ],
   "user_facts": {},
   "last_turn": {
-    "user": "\\quit",
-    "assistant": "Alright. I’ll be here if you come back."
+    "user": "That worked fine",
+    "assistant": "Good. If you want to measure the switch latency, give me the exact voice-switch tokens for voice A and voice B and I’ll output alternating [A]/[B] lines; otherwise I’ll stay as-is."
   }
 }

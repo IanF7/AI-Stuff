@@ -15,9 +15,7 @@ PIPER_VOICE = BASE_DIR / "speech" / "voices" / "en_US-amy-medium.onnx"
 
 client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
 previous_response_id = None
-
-tts_enabled = os.getenv("tts_enabled", "true").lower() in {"1", "true", "yes", "on"}
-tts = PiperTTS(piper_exe = str(PIPER_EXE), model_path = str(PIPER_VOICE), enabled = tts_enabled)
+tts = PiperTTS(piper_exe = str(PIPER_EXE), model_path = str(PIPER_VOICE), enabled = True)
 
 while True:
     user_text = input("User> ").strip()
@@ -40,7 +38,6 @@ while True:
 
     stm = load_stm()
     instructions = stm_build_instructions(stm)
-    tts_enabled = os.getenv("tts_enabled", "true").lower() in {"1", "true", "yes", "on"}
     speech_buffer = ""
 
     with client.responses.stream(

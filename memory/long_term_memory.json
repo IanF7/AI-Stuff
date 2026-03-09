@@ -4,5 +4,23 @@
     "type": "other",
     "summary": "User is testing adding TTS/voice to the assistant and evaluating emotional expression via short utterances.",
     "importance": "medium"
+  },
+  {
+    "timestamp": "2026-03-09T21:24:34.282631+00:00",
+    "type": "preference",
+    "summary": "User is testing TTS/voice switching; prefers short, clean replies for clarity during tests.",
+    "importance": "medium"
+  },
+  {
+    "timestamp": "2026-03-09T21:25:20.210042Z",
+    "type": "preference",
+    "summary": "User prefers short replies; they are testing TTS voice switching and may rely on exact trigger phrases/selectors.",
+    "importance": "medium"
+  },
+  {
+    "timestamp": "2026-03-09T21:41:28.531619Z",
+    "type": "project",
+    "summary": "User is testing TTS voice switching and latency; may request alternating A/B outputs using specific voice-switch tokens.",
+    "importance": "medium"
   }
 ]
