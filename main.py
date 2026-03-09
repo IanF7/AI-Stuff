@@ -3,17 +3,21 @@ from openai import OpenAI
 from pathlib import Path
 
 from memory.short_term_memory import load_stm, save_stm, stm_build_instructions, stm_updater_model
-from memory.long_term_memory import ltm_updater_model, save_ltm, load_ltm
-from speech.TTS import queue_speak, extract_speakable_chunks
+from memory.long_term_memory import ltm_updater_model, save_ltm
+from speech.TTS import PiperTTS, pop_tts_chunk
 
 BASE_DIR = Path(__file__).resolve().parent
 CORE_PERSONALITY = (BASE_DIR / "personality/core_personality.txt").read_text(encoding="utf-8").strip()
 SECONDARY_PERSONALITY = (BASE_DIR / "personality/secondary_personality.txt").read_text(encoding="utf-8").strip()
 
+PIPER_EXE = BASE_DIR / "piper" / "piper.exe"
+PIPER_VOICE = BASE_DIR / "speech" / "voices" / "en_US-amy-medium.onnx"
+
 client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
 previous_response_id = None
 
 tts_enabled = os.getenv("tts_enabled", "true").lower() in {"1", "true", "yes", "on"}
+tts = PiperTTS(piper_exe = str(PIPER_EXE), model_path = str(PIPER_VOICE), enabled = tts_enabled)
 
 while True:
     user_text = input("User> ").strip()
@@ -21,20 +25,22 @@ while True:
         stm = load_stm()
         ltm_result = ltm_updater_model(stm, SECONDARY_PERSONALITY, client)
         save_ltm(ltm_result)
+        tts.close()
         break
     if user_text == "/tts on":
         os.environ["tts_enabled"] = "true"
+        tts.set_enabled(True)
         print("TTS enabled.\n")
         continue
     if user_text == "/tts off":
         os.environ["tts_enabled"] = "false"
+        tts.set_enabled(False)
         print("TTS disabled.\n")
         continue
 
     stm = load_stm()
     instructions = stm_build_instructions(stm)
     tts_enabled = os.getenv("tts_enabled", "true").lower() in {"1", "true", "yes", "on"}
-    text_parts = []
     speech_buffer = ""
 
     with client.responses.stream(
@@ -47,13 +53,12 @@ while True:
             if event.type == "response.output_text.delta":
                 delta = event.delta
                 print(delta, end="", flush=True)
-                text_parts.append(delta)
-                if tts_enabled:
-                    speech_buffer += delta
-                    chunks, speech_buffer = extract_speakable_chunks(speech_buffer)
-
-                    for chunk in chunks:
-                        queue_speak(chunk)
+                speech_buffer += delta
+                while True:
+                    chunk, speech_buffer = pop_tts_chunk(speech_buffer)
+                    if not chunk:
+                        break
+                    tts.speak(chunk)
 
         final = stream.get_final_response()
 
@@ -62,8 +67,8 @@ while True:
 
     assistant_text = final.output_text.strip()
 
-    if tts_enabled and speech_buffer.strip():
-        queue_speak(speech_buffer.strip())
+    if speech_buffer.strip():
+        tts.speak(speech_buffer.strip())
 
     stm = stm_updater_model(stm, user_text, assistant_text, client)
     save_stm(stm)

@@ -1,9 +1,10 @@
-[
-  {
-        "updated_at": "<ISO-8601 UTC timestamp>",
-        "session_summary": "<1-3 sentences, max 600 chars>",
-        "open_loops": ["<max 5 items>"],
-        "user_facts": { "<key>": "<value>", "...": "..." },
-        "last_turn": { "user": "<max 300 chars>", "assistant": "<max 300 chars>" }
-    }
-]
+{
+  "updated_at": "2026-03-09T21:08:46.937812+00:00",
+  "session_summary": "User is testing adding a voice (TTS) to the assistant and is checking how well it can express emotion via short utterances. Session ended after the user quit.",
+  "open_loops": [],
+  "user_facts": {},
+  "last_turn": {
+    "user": "\\quit",
+    "assistant": "Alright. I’ll be here if you come back."
+  }
+}

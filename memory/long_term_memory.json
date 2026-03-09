@@ -1,3 +1,8 @@
 [
-
+  {
+    "timestamp": "2026-03-09T21:08:58.602545Z",
+    "type": "other",
+    "summary": "User is testing adding TTS/voice to the assistant and evaluating emotional expression via short utterances.",
+    "importance": "medium"
+  }
 ]
