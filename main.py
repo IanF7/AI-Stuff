@@ -39,6 +39,7 @@ while True:
     stm = load_stm()
     instructions = stm_build_instructions(stm)
     speech_buffer = ""
+    first_chunk = True
 
     with client.responses.stream(
         model = "gpt-5.2",
@@ -52,10 +53,11 @@ while True:
                 print(delta, end="", flush=True)
                 speech_buffer += delta
                 while True:
-                    chunk, speech_buffer = pop_tts_chunk(speech_buffer)
+                    chunk, speech_buffer = pop_tts_chunk(speech_buffer, first_chunk = first_chunk)
                     if not chunk:
                         break
                     tts.speak(chunk)
+                    first_chunk = False
 
         final = stream.get_final_response()
 
@@ -65,7 +67,7 @@ while True:
     assistant_text = final.output_text.strip()
 
     if speech_buffer.strip():
-        tts.speak(speech_buffer.strip())
+        tts.speak(speech_buffer)
 
     stm = stm_updater_model(stm, user_text, assistant_text, client)
     save_stm(stm)
