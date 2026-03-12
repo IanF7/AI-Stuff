@@ -5,19 +5,24 @@ from pathlib import Path
 from memory.short_term_memory import load_stm, save_stm, stm_build_instructions, stm_updater_model
 from memory.long_term_memory import ltm_updater_model, save_ltm
 from speech.TTS import PiperTTS, pop_tts_chunk
+from speech.STT import SpeechToText
 
 BASE_DIR = Path(__file__).resolve().parent
-CORE_PERSONALITY = (BASE_DIR / "personality/core_personality.txt").read_text(encoding="utf-8").strip()
+CORE_PERSONALITY = (BASE_DIR / "personality/core_personality_jarvis.txt").read_text(encoding="utf-8").strip()
 SECONDARY_PERSONALITY = (BASE_DIR / "personality/secondary_personality.txt").read_text(encoding="utf-8").strip()
 
 PIPER_EXE = BASE_DIR / "piper" / "piper.exe"
-PIPER_VOICE = BASE_DIR / "speech" / "voices" / "en_US-amy-medium.onnx"
+#PIPER_VOICE = BASE_DIR / "speech" / "voices" / "en_US-amy-medium.onnx"
+PIPER_VOICE = BASE_DIR / "speech" / "voices" / "en_GB-northern_english_male-medium.onnx"
 
 client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
 previous_response_id = None
 tts = PiperTTS(piper_exe = str(PIPER_EXE), model_path = str(PIPER_VOICE), enabled = True)
+stt = SpeechToText(model_size = "base")
+#stt.listen()
 
 while True:
+    #user_text = stt.text_queue.get().strip()
     user_text = input("User> ").strip()
     if user_text in {"/quit"}:
         stm = load_stm()

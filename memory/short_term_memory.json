@@ -1,10 +1,7 @@
 {
-  "updated_at": "2026-03-11T22:09:01.672515+00:00",
-  "session_summary": "User is testing TTS naturalness/latency and punctuation handling. They requested short quotes ending with period/exclamation/question to verify punctuation isn’t spoken literally; test appears successful.",
-  "open_loops": [],
-  "user_facts": {},
-  "last_turn": {
-    "user": "Nope, perfect",
-    "assistant": "Alright. I’ll stay quiet, then."
+    "updated_at": null,
+    "session_summary": "",
+    "open_loops": [],
+    "user_facts": {},
+    "last_turn": {"user": "", "assistant": ""}
   }
-}
