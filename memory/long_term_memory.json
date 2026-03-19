@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "timestamp": "2026-03-16T22:05:09.997944+00:00",
+    "type": "preference",
+    "summary": "User prefers to be addressed as \"Jarvis\".",
+    "importance": "medium"
+  },
+  {
+    "timestamp": "2026-03-16T22:05:09.997944+00:00",
+    "type": "constraint",
+    "summary": "User can't talk aloud in the office; needs quiet/low-profile interaction methods.",
+    "importance": "high"
+  },
+  {
+    "timestamp": "2026-03-16T22:05:09.997944+00:00",
+    "type": "project",
+    "summary": "Main work project starts next week; user is currently waiting on inputs from another person for a side project.",
+    "importance": "medium"
+  }
+]

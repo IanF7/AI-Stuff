@@ -5,7 +5,7 @@ from openai import OpenAI
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-CORE_PERSONALITY = (BASE_DIR / "personality/core_personality.txt").read_text(encoding="utf-8").strip()
+CORE_PERSONALITY = (BASE_DIR / "personality/core_personality_jarvis.txt").read_text(encoding="utf-8").strip()
 SECONDARY_PERSONALITY = (BASE_DIR / "personality/secondary_personality.txt").read_text(encoding="utf-8").strip()
 
 LTM_PATH = BASE_DIR / "memory/long_term_memory.json"

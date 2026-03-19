@@ -1,7 +1,21 @@
 {
-    "updated_at": null,
-    "session_summary": "",
-    "open_loops": [],
-    "user_facts": {},
-    "last_turn": {"user": "", "assistant": ""}
+  "updated_at": "2026-03-19T20:58:08.016781+00:00",
+  "session_summary": "User is bored at work on a slow, quiet day. Their main hired project starts next week; they’re waiting on another contributor for side-project inputs. They want to test/iterate on voice-style interaction but can’t speak aloud in the office.",
+  "open_loops": [
+    "Find low-profile ways for user to interact (voice/dictation) without talking in office",
+    "Determine user’s role and what the side project is about",
+    "Clarify what platform/app they’re testing and what the voice feature does",
+    "Clarify what the user meant by 'I'll just comparison' and what exactly they are comparing"
+  ],
+  "user_facts": {
+    "context": "Bored at work; day is slow and quiet",
+    "preferred_address": "Jarvis",
+    "constraint": "Cannot talk aloud in office; would look weird for testing",
+    "work_status": "Main hired project starts next week",
+    "side_project_status": "Waiting on another contributor for materials/inputs"
+  },
+  "last_turn": {
+    "user": "It's a little better I guess.",
+    "assistant": "Offered discreet options: silent voice-run via typed utterances, command/edge-case test list, or side-project prep; asked which and what platform/app it's for."
   }
+}

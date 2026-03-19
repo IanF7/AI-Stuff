@@ -13,10 +13,6 @@ def normalize_text(text: str) -> str:
     text = text.replace("`", "")
     text = re.sub(r"\.{3,}", "…", text)
 
-    # CHANGED:
-    # Normalize curly quotes/apostrophes from LLM output into plain ASCII quotes.
-    # This makes the regex rules below work consistently on text like:
-    # “Alright… I’ll keep it simple.”
     text = (
         text.replace("“", '"')
             .replace("”", '"')
